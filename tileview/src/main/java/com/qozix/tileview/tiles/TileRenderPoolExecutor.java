@@ -23,20 +23,20 @@ public class TileRenderPoolExecutor extends ThreadPoolExecutor {
 
   public TileRenderPoolExecutor() {
     super(
-      INITIAL_POOL_SIZE,
-      MAXIMUM_POOL_SIZE,
-      KEEP_ALIVE_TIME,
-      KEEP_ALIVE_TIME_UNIT,
-      new LinkedBlockingDeque<Runnable>()
+            INITIAL_POOL_SIZE,
+            MAXIMUM_POOL_SIZE,
+            KEEP_ALIVE_TIME,
+            KEEP_ALIVE_TIME_UNIT,
+            new LinkedBlockingDeque<Runnable>()
     );
   }
 
-  public void queue( TileCanvasViewGroup tileCanvasViewGroup, Set<Tile> renderSet ) {
+  public void queue(TileCanvasViewGroup tileCanvasViewGroup, Set<Tile> renderSet ) {
     mTileCanvasViewGroupWeakReference = new WeakReference<>( tileCanvasViewGroup );
     mHandler.setTileCanvasViewGroup( tileCanvasViewGroup );
     tileCanvasViewGroup.onRenderTaskPreExecute();
     for( Runnable runnable : getQueue() ) {
-      if( runnable instanceof TileRenderRunnable ) {
+      if( runnable instanceof TileRenderRunnable) {
         TileRenderRunnable tileRenderRunnable = (TileRenderRunnable) runnable;
         if( tileRenderRunnable.isDone() || tileRenderRunnable.isCancelled() ) {
           continue;
@@ -77,7 +77,7 @@ public class TileRenderPoolExecutor extends ThreadPoolExecutor {
 
   public void cancel() {
     for( Runnable runnable : getQueue() ) {
-      if( runnable instanceof TileRenderRunnable ) {
+      if( runnable instanceof TileRenderRunnable) {
         TileRenderRunnable tileRenderRunnable = (TileRenderRunnable) runnable;
         tileRenderRunnable.cancel( true );
         Tile tile = tileRenderRunnable.getTile();

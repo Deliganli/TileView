@@ -34,6 +34,16 @@ public class MarkerLayout extends ViewGroup {
     requestLayout();
   }
 
+  public void setRotation(float degrees) {
+    for (int i = 0; i < getChildCount(); i++) {
+      View child = getChildAt(i);
+      LayoutParams lp = (LayoutParams) child.getLayoutParams();
+      if (lp.rotatable) {
+        child.setRotation(degrees);
+      }
+    }
+  }
+
   /**
    * Sets the scale (0-1) of the MarkerLayout.
    *
@@ -57,6 +67,12 @@ public class MarkerLayout extends ViewGroup {
     LayoutParams layoutParams = new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, x, y, aX, aY );
     return addMarker( view, layoutParams );
   }
+
+    public View addMarker( View view, int x, int y, Float aX, Float aY , boolean rotatable) {
+        LayoutParams layoutParams = new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, x, y, aX, aY );
+        layoutParams.rotatable = rotatable;
+        return addMarker( view, layoutParams );
+    }
 
   public View addMarker( View view, LayoutParams params ) {
     addView( view, params );
@@ -192,6 +208,8 @@ public class MarkerLayout extends ViewGroup {
      */
     public Float anchorY = null;
 
+    public boolean rotatable = true;
+
     private int mTop;
     private int mLeft;
     private int mBottom;
@@ -264,6 +282,6 @@ public class MarkerLayout extends ViewGroup {
   }
 
   public interface MarkerTapListener {
-    void onMarkerTap( View view, int x, int y );
+    void onMarkerTap(View view, int x, int y);
   }
 }

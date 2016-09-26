@@ -74,10 +74,10 @@ public class Tile {
     mIntrinsicRect.set( 0, 0, mWidth, mHeight );
     mBaseRect.set( mLeft, mTop, mRight, mBottom );
     mRelativeRect.set(
-      FloatMathHelper.unscale( mLeft, mDetailLevelScale ),
-      FloatMathHelper.unscale( mTop, mDetailLevelScale ),
-      FloatMathHelper.unscale( mRight, mDetailLevelScale ),
-      FloatMathHelper.unscale( mBottom, mDetailLevelScale )
+            FloatMathHelper.unscale( mLeft, mDetailLevelScale ),
+            FloatMathHelper.unscale( mTop, mDetailLevelScale ),
+            FloatMathHelper.unscale( mRight, mDetailLevelScale ),
+            FloatMathHelper.unscale( mBottom, mDetailLevelScale )
     );
     mScaledRect.set( mRelativeRect );
   }
@@ -143,10 +143,10 @@ public class Tile {
 
   public Rect getScaledRect( float scale ) {
     mScaledRect.set(
-      (int) (mRelativeRect.left * scale),
-      (int) (mRelativeRect.top * scale),
-      (int) (mRelativeRect.right * scale),
-      (int) (mRelativeRect.bottom * scale)
+            (int) (mRelativeRect.left * scale),
+            (int) (mRelativeRect.top * scale),
+            (int) (mRelativeRect.right * scale),
+            (int) (mRelativeRect.bottom * scale)
     );
     return mScaledRect;
   }
@@ -274,11 +274,11 @@ public class Tile {
     if( this == o ) {
       return true;
     }
-    if( o instanceof Tile ) {
+    if( o instanceof Tile) {
       Tile m = (Tile) o;
       return m.getRow() == getRow()
-        && m.getColumn() == getColumn()
-        && m.getDetailLevel().getScale() == getDetailLevel().getScale();
+              && m.getColumn() == getColumn()
+              && m.getDetailLevel().getScale() == getDetailLevel().getScale();
     }
     return false;
   }

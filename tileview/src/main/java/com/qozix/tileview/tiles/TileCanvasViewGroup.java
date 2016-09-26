@@ -470,7 +470,7 @@ public class TileCanvasViewGroup extends ViewGroup {
 
   // ideally this would be part of TileRenderListener, but that's a breaking change
   public interface TileRenderThrowableListener {
-    void onRenderThrow( Throwable throwable );
+    void onRenderThrow(Throwable throwable);
   }
 
   // This runnable is required to run on UI thread

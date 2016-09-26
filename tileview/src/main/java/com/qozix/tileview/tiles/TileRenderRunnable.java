@@ -67,7 +67,7 @@ class TileRenderRunnable implements Runnable {
     if( mCancelled ) {
       return TileRenderHandler.Status.INCOMPLETE;
     }
-    android.os.Process.setThreadPriority( Process.THREAD_PRIORITY_BACKGROUND );
+    Process.setThreadPriority( Process.THREAD_PRIORITY_BACKGROUND );
     if( mThread.isInterrupted() ) {
       return TileRenderHandler.Status.INCOMPLETE;
     }
